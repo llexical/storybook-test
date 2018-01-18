@@ -36,5 +36,5 @@ storiesOf('Input', module)
 
 storiesOf('Autocomplete', module)
   .add('default', () => (
-    
-  ))
+    <Autocomplete />
+  ));
