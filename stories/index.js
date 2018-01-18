@@ -1,13 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider} from 'styled-components';
 
 import theme from '../theme';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 import Autocomplete from '../components/Autocomplete';
-
 
 storiesOf('Button', module)
   .add('primary with text', () => (
