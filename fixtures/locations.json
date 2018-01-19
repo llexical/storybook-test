@@ -1,0 +1,35 @@
+{
+    "results":[
+        {
+            "id":"56d08f35f8bc8d0300834be2",
+            "name":"Shortlands",
+            "slug":"shortlands",
+            "locationType":"ward",
+            "description":"Area"
+        },{
+            "id":"56d08fa9f8bc8d0300834c47",
+            "name":"Shooters Hill",
+            "slug":"shooters-hill",
+            "locationType":"ward",
+            "description":"Area"
+        },{
+            "id":"56d08eb8f8bc8d0300834b70",
+            "name":"Shoreditch High Street",
+            "slug":"shoreditch-high-street",
+            "locationType":"station",
+            "description":"station",
+            "coordinates":{
+                "latitude":51.523467,
+                "longitude":-0.077073
+            }
+        },{
+            "name":"Soho, London, UK",
+            "locationType":"geocoder_address",
+            "description":"Address",
+            "coordinates":{
+                "latitude":51.5136143,
+                "longitude":-0.1365486
+            }
+        }
+    ]
+}

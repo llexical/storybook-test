@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from '../../theme';
 import config from '../../config';
+import fixtures from '../../fixtures';
+
 import TextInput from '../TextInput';
 import Dropdown from './Dropdown';
 
@@ -19,10 +21,19 @@ class Autocomplete extends React.Component {
   }
 
   async getLocations(location) {
-    const res = await fetch(`${config.apiUrl}api/v2/locations/lookup?query=${location}&api_key=${config.apiKey}`);
+    const res = await fetch(`${config.apiUrl}api/v2/locations/lookup?query=${location}&api_key=${config.apiKey}`);    
     return await res.json();
+
+    // While on train lol
+    // return JSON.parse(JSON.stringify(fixtures.locations));
   }
 
+  /**
+   * Searches for the correct location
+   * Shows & hides the dropdown 
+   * 
+   * @param {Event} event 
+   */
   async onInputChange(event) {
     const val = event.target.value;
     let hidden = 'hidden';
@@ -33,13 +44,13 @@ class Autocomplete extends React.Component {
 
     // Get results
     const res = await this.getLocations(val);
+    console.log('results', res);
     
+    // If theree are results nolonger hide the dropdown.
     if (res.results.length) hidden = '';
-
+    // show/hide dropdown and set results
     return this.setState({hidden, results: res.results});
   }
-
-
 
   render() {
     return (

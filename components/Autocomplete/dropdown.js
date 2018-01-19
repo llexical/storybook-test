@@ -8,8 +8,13 @@ class Dropdown extends React.Component {
   render() {
     return (
       <DropdownList {...this.props}>
-        {this.props.results.map((result) => {
-          return <DropdownItem {...result} />;
+        <DropdownItem title>Locations</DropdownItem>
+        {this.props.results.slice(0, 4).map((result) => {
+          return (
+            <DropdownItem key={result.id} subtext={result.description.split(' ')[0]}>
+              {result.name}
+            </DropdownItem>
+          );
         })}
       </DropdownList>
     )

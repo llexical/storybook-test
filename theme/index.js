@@ -7,6 +7,7 @@ const theme = {
   secondary: 'rgb(84, 106, 120)',
   warning: 'rgb(244, 167, 0)',
   danger: 'rgb(179, 32, 35)',
+  grey500: '#7B7B7B',
   fontMono: '\'Courier\', monospace',
   fontSans: '\'Source Sans Pro\', \'Arial\', sans-serif',
   fontSerif: '\'Bree Serif\', \'Times\', serif',
@@ -20,7 +21,7 @@ const theme = {
   headings: '6 5 4 3 2 1',
   baseBorder: '1px solid rgb(84, 106, 120)',
   baseRadius: '0.25rem',
-  baseBoxShadow: 'rgba(42, 53, 60, 0.2) 0 0 5px'
+  baseBoxShadow: '0 2px 24px 0 rgba(123, 123, 123, 0.5)' // Can be done better, but will do for now
 }
 
 export default theme;
