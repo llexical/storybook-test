@@ -38,6 +38,8 @@ class Autocomplete extends React.Component {
     const val = event.target.value;
     let hidden = 'hidden';
 
+    console.log(val);
+
     if (val.length <= 2) {
       return this.setState({hidden});
     }
@@ -47,7 +49,7 @@ class Autocomplete extends React.Component {
     console.log('results', res);
     
     // If theree are results nolonger hide the dropdown.
-    if (res.results.length) hidden = '';
+    if (res.results.length && val.length > 2) hidden = '';
     // show/hide dropdown and set results
     return this.setState({hidden, results: res.results});
   }
