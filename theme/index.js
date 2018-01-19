@@ -8,6 +8,7 @@ const theme = {
   warning: 'rgb(244, 167, 0)',
   danger: 'rgb(179, 32, 35)',
   grey500: '#7B7B7B',
+  grey100: '#d7d7d7',
   fontMono: '\'Courier\', monospace',
   fontSans: '\'Source Sans Pro\', \'Arial\', sans-serif',
   fontSerif: '\'Bree Serif\', \'Times\', serif',

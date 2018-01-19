@@ -5,7 +5,13 @@ const ListItem = styled.li`
   margin: 0;
   padding: 7px 30px;
   font-family: ${(props => props.theme.baseFontFamily)};
-  font-size: 15px;
+  font-size: ${(props => props.title ? '13px' : '15px')};
+  cursor: pointer;
+  ${props => props.title ? 'pointer-events: none;': ''};
+
+  &:hover {
+    background-color: ${(props => props.theme.grey100)};
+  }
 `;
 
 const Subtext = styled.span`
@@ -18,7 +24,7 @@ const Subtext = styled.span`
 class DropdownItem extends React.Component {
   render() {
     return (
-      <ListItem>
+      <ListItem {...this.props}>
         {this.props.children}
         <Subtext>{this.props.subtext}</Subtext>
       </ListItem>
