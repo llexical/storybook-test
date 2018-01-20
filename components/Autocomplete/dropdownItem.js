@@ -5,9 +5,9 @@ const ListItem = styled.li`
   margin: 0;
   padding: 7px 30px;
   font-family: ${(props => props.theme.baseFontFamily)};
-  font-size: ${(props => props.title ? '13px' : '15px')};
+  font-size: ${(props => props.heading ? '13px' : '15px')};
   cursor: pointer;
-  ${props => props.title ? 'pointer-events: none;': ''};
+  ${props => props.heading ? 'pointer-events: none;': ''};
 
   &:hover {
     background-color: ${(props => props.theme.grey100)};

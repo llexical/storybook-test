@@ -8,7 +8,7 @@ class Dropdown extends React.Component {
   render() {
     return (
       <DropdownList {...this.props}>
-        <DropdownItem title>Locations</DropdownItem>
+        <DropdownItem heading>Locations</DropdownItem>
         {this.props.results.slice(0, 4).map((result) => {
           return (
             <DropdownItem key={result.id} subtext={result.description.split(' ')[0]}>
