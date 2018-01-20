@@ -7,7 +7,7 @@ class Dropdown extends React.Component {
 
   render() {
     return (
-      <DropdownList {...this.props}>
+      <DropdownList hidden={this.props.hidden}>
         <DropdownItem heading>Locations</DropdownItem>
         {this.props.results.slice(0, 4).map((result) => {
           return (

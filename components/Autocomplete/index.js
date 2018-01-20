@@ -47,10 +47,10 @@ class Autocomplete extends React.Component {
   setResults(results) {
     // If there are results nolonger hide the dropdown.
     if (!results.length || this.value.length <= 2) {
-      return this.setState({hidden: 'hidden', results: []});
+      return this.setState({hidden: true, results: []});
     }
     // show/hide dropdown and set results
-    return this.setState({hidden: '', results: results});
+    return this.setState({hidden: false, results: results});
   }
 
   /**
@@ -65,7 +65,7 @@ class Autocomplete extends React.Component {
 
     // Min length for searching is 2
     if (this.value.length <= 2) {
-      return this.setState({hidden: 'hidden', results: []});
+      return this.setState({hidden: true, results: []});
     }
 
     this.debounceGetResults();
@@ -76,7 +76,7 @@ class Autocomplete extends React.Component {
       <ThemeProvider theme={theme}>
         <div>
           <TextInput onChange={this.onInputChange} placeholder="Search by location or office name"/>
-          <Dropdown {...this.state} />
+          <Dropdown {...this.state}  />
         </div>
       </ThemeProvider>
     )
