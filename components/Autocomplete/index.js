@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
+import debounce from 'lodash.debounce';
 
 import theme from '../../theme';
 import config from '../../config';
@@ -18,6 +19,7 @@ class Autocomplete extends React.Component {
     }
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.debounceGetResults = debounce(this.getResults, 150);
   }
 
   async getLocations(location) {
@@ -29,29 +31,44 @@ class Autocomplete extends React.Component {
   }
 
   /**
-   * Searches for the correct location
-   * Shows & hides the dropdown 
+   * Gets the results via api call(s)
+   * TODO: set this up to use an array of urls
+   */
+  async getResults() {
+    const res = await this.getLocations(this.value);    
+    this.setResults(res.results);
+  }
+
+  /**
+   * Sets the results in the state and shows/hides the dropdown
+   * 
+   * @param {Array} results - Returns returned from the api call(s)
+   */
+  setResults(results) {
+    // If there are results nolonger hide the dropdown.
+    if (!results.length || this.value.length <= 2) {
+      return this.setState({hidden: 'hidden', results: []});
+    }
+    // show/hide dropdown and set results
+    return this.setState({hidden: '', results: results});
+  }
+
+  /**
+   * Searches and sets the results.
+   * Uses a debounce to make sure a user can type quickly
+   * without spamming our api's and odd ui flashes.
    * 
    * @param {Event} event 
    */
   async onInputChange(event) {
-    const val = event.target.value;
-    let hidden = 'hidden';
+    this.value = event.target.value;
 
-    console.log(val);
-
-    if (val.length <= 2) {
-      return this.setState({hidden});
+    // Min length for searching is 2
+    if (this.value.length <= 2) {
+      return this.setState({hidden: 'hidden', results: []});
     }
 
-    // Get results
-    const res = await this.getLocations(val);
-    console.log('results', res);
-    
-    // If theree are results nolonger hide the dropdown.
-    if (res.results.length && val.length > 2) hidden = '';
-    // show/hide dropdown and set results
-    return this.setState({hidden, results: res.results});
+    this.debounceGetResults();
   }
 
   render() {
