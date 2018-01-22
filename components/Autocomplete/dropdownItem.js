@@ -14,7 +14,7 @@ const ListItem = styled.li`
   }
 `;
 
-const Subtext = styled.span`
+const Tag = styled.span`
   color: ${(props => props.theme.grey500)};
   text-transform: uppercase;
   font-size: 11px;
@@ -22,11 +22,12 @@ const Subtext = styled.span`
 `
 
 class DropdownItem extends React.Component {
+
   render() {
     return (
       <ListItem {...this.props}>
         {this.props.children}
-        <Subtext>{this.props.subtext}</Subtext>
+        <Tag>{this.props.tag}</Tag>
       </ListItem>
     )
   }

@@ -16,6 +16,7 @@ class Autocomplete extends React.Component {
     this.state = {
       hidden: 'hidden',
       results: [],
+      selectedResult: ''
     }
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -27,7 +28,7 @@ class Autocomplete extends React.Component {
     return await res.json();
 
     // While on train lol
-    // return JSON.parse(JSON.stringify(fixtures.locations));
+    return JSON.parse(JSON.stringify(fixtures.locations));
   }
 
   /**
@@ -54,6 +55,23 @@ class Autocomplete extends React.Component {
   }
 
   /**
+   * Sets the selectedResult in state
+   * 
+   * @param {Object} result - Selected result from dropdown
+   */
+  selectResult(result) {
+    console.log('result selected', result);
+    this.setState({selectedResult: result});
+  }
+
+  /**
+   * Resets the selectedResult
+   */
+  clearResult() {
+    this.setState({selectedResult: null});
+  }
+
+  /**
    * Searches and sets the results.
    * Uses a debounce to make sure a user can type quickly
    * without spamming our api's and odd ui flashes.
@@ -68,15 +86,27 @@ class Autocomplete extends React.Component {
       return this.setState({hidden: true, results: []});
     }
 
-    this.debounceGetResults();
+    // If they have finished a word start searching :)
+    if (this.value.endsWith(' ')) {
+      return this.getResults();
+    }
+    return this.debounceGetResults();
   }
 
   render() {
     return (
       <ThemeProvider theme={theme}>
         <div>
-          <TextInput onChange={this.onInputChange} placeholder="Search by location or office name"/>
-          <Dropdown {...this.state}  />
+          <TextInput 
+            onChange={this.onInputChange} 
+            placeholder="Search by location or office name"
+            value={this.state.selectedResult.name}
+          />
+          <Dropdown 
+            {...this.state} 
+            value={this.value} 
+            onSelect={this.selectResult} 
+          />
         </div>
       </ThemeProvider>
     )
